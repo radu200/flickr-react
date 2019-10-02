@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import FrlickrCard from './FrlickrCard'
 import SearchInput from './Search'
 import './scss/flickr.scss'
@@ -37,7 +38,7 @@ class Flickr extends Component {
   
       
 render() {
-  const res = this.state.data.filter((res) => {
+  const SearchResults = this.state.data.filter((res) => {
     return res.tags.toLowerCase().indexOf(this.state.query.toLowerCase()) !== -1;     
   })
     return (
@@ -45,10 +46,12 @@ render() {
             <SearchInput 
               value={this.state.value} 
               onChange={this.onTextChange} />
-            <FrlickrCard data={res}/>
+            <FrlickrCard data={SearchResults}/>
        </div>
     );
   }
-
+}
+Flickr.protoTypes = {
+  SearchResults:PropTypes.object.isRequired  
 }
 export default Flickr;

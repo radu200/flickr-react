@@ -1,9 +1,11 @@
-import React, { Component } from 'react';
+import React  from 'react';
+import PropTypes from 'prop-types';
 import './scss/search.scss'
-  const SearchInput = ({onSubmit,onChange, value}) => {
+  
+const SearchInput = ({onChange, value}) => {
     return (
       <div>
-      <form onSubmit={onSubmit}>
+      <form >
         <input
            value={value}
            onChange={onChange}
@@ -15,5 +17,9 @@ import './scss/search.scss'
     );
   }
 
+  SearchInput.propTypes = {
+    onChange:PropTypes.func.isRequired,
+    value:PropTypes.string
+  }
 
 export default SearchInput;

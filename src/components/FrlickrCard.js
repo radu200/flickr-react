@@ -1,6 +1,8 @@
 
 import React, { Component } from 'react';
-class Result extends Component {
+import PropTypes from 'prop-types';
+
+class FlickrCard extends Component {
     constructor(props){
         super(props)
 
@@ -50,7 +52,17 @@ class Result extends Component {
 }
 
 
+FlickrCard.protoTypes = {
+    data:PropTypes.arrayOf(
+        PropTypes.shape({
+            media:PropTypes.string.isRequired,
+            title:PropTypes.string.isRequired,
+            description:PropTypes.string.isRequired,
+            link:PropTypes.string.isRequired,
+            tags:PropTypes.string.isRequired
+        }) 
+    )
+}
 
 
-
-export default Result;
+export default FlickrCard;
