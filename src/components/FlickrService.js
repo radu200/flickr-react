@@ -1,36 +1,51 @@
 import React, { Component } from 'react';
-
+import FrlickrCard from './FrlickrCard'
+import SearchInput from './Search'
+import './scss/flickr.scss'
 import JSONP from 'jsonp'
-import Search from './Search'
 
 
 class Flickr extends Component {
   constructor(props){
     super(props);
       this.state = {
-        data: []
+        data: [],
+        query:''
       }
-    }
+      this.onTextChange = this.onTextChange.bind(this)
 
+    }
+  
   
     
      componentDidMount(){
-       let url = 'https://api.flickr.com/services/feeds/photos_public.gne?tags="kitten"&format=json';       
+       let url = `https://api.flickr.com/services/feeds/photos_public.gne?tags=cats&format=json`;       
        JSONP(url,{"param": "jsoncallback"},(e, res) => {
           const data = res.items
          this.setState({data});
-        //  console.log(data)
          
        })
      }
     
-   
-
-
-  render() {
+     onTextChange = (e) => {
+       // get input value
+       const val = e.target.value;
+       this.setState({query:val})
+  
+     }
+     
+  
+      
+render() {
+  const res = this.state.data.filter((res) => {
+    return res.tags.toLowerCase().indexOf(this.state.query.toLowerCase()) !== -1;     
+  })
     return (
-        <div >
-            <Search data={this.state.data}/>
+        <div className='container'>
+            <SearchInput 
+              value={this.state.value} 
+              onChange={this.onTextChange} />
+            <FrlickrCard data={res}/>
        </div>
     );
   }

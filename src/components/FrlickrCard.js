@@ -1,7 +1,5 @@
 
 import React, { Component } from 'react';
-import './scss/flickr.scss'
-
 class Result extends Component {
     constructor(props){
         super(props)
@@ -27,11 +25,10 @@ class Result extends Component {
 
          render(){
            return (
-                <div className="container">
-                    <div className="row">
-                    {this.props.results.map((item,index) => {
+                <div className="row">
+                    {this.props.data.map((item,index) => {
                         return(
-                                    <div key={index} className="card">
+                                <div key={index} className="card">
                                         <img  className="card-image"  alt={item.title} src={item.media.m}/>
                                     
                                         <div className="card-body">
@@ -47,7 +44,7 @@ class Result extends Component {
                                 })
                             }
                     </div> 
-                </div>
+                
             )
          }
 }
