@@ -36,10 +36,10 @@ class Flickr extends Component {
       );
     });
     return (
-      <div className="container">
+        <>
         <SearchInput value={this.state.value} onChange={this.onTextChange} />
         <FrlickrCard data={SearchResults} />
-      </div>
+       </>
     );
   }
 }
