@@ -10,35 +10,37 @@ class Flickr extends Component {
     super(props);
     this.state = {
       data: [],
-      query: ""
     };
     this.onTextChange = this.onTextChange.bind(this);
   }
 
-  componentDidMount() {
-    let url = `https://api.flickr.com/services/feeds/photos_public.gne?tags=cats&format=json`;
+  fetchData (query) {
+    const url = `https://api.flickr.com/services/feeds/photos_public.gne?tags=${query}&format=json`;
     JSONP(url, { param: "jsoncallback" }, (e, res) => {
       const data = res.items;
       this.setState({ data });
     });
   }
+  componentDidMount() {
+     const val = 'cats'
+     this.fetchData(val)
+  }
 
   onTextChange = e => {
     // get input value
     const val = e.target.value;
-    this.setState({ query: val });
+    this.fetchData(val)
   };
+ 
 
   render() {
-    const SearchResults = this.state.data.filter(res => {
-      return (
-        res.tags.toLowerCase().indexOf(this.state.query.toLowerCase()) !== -1
-      );
-    });
+    const {value, data} = this.state 
+    const { onTextChange, } = this
+ 
     return (
         <>
-        <SearchInput value={this.state.value} onChange={this.onTextChange} />
-        <FrlickrCard data={SearchResults} />
+        <SearchInput value={value} onChange={onTextChange}  />
+        <FrlickrCard data={data} />
        </>
     );
   }

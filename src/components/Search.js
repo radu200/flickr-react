@@ -2,10 +2,9 @@ import React from "react";
 import PropTypes from "prop-types";
 import "./scss/search.scss";
 
-const SearchInput = ({ onChange, value }) => {
-  return (
-    <>  
-      <form className="search-container"> 
+const SearchInput = ({ onChange, value}) => {
+  return (  
+      <div className="search-container"> 
         <input
           value={value}
           onChange={onChange}
@@ -13,14 +12,13 @@ const SearchInput = ({ onChange, value }) => {
           placeholder="Search"
           required
         />
-        <button  className="search-btn" type='submit'>Search</button>
-      </form>
-    </>
+      </div>
+
   );
 };
 
 SearchInput.propTypes = {
-  onChange: PropTypes.func.isRequired,
+  onChange: PropTypes.func,
   value: PropTypes.string
 };
 
