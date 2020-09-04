@@ -7,7 +7,7 @@
     "axios": "^0.18.0",
     "gh-pages": "^2.1.1",
     "jsonp": "^0.2.1",
-    "node-sass": "^4.11.0",
+    "node-sass": "^4.13.1",
     "react": "^16.8.2",
     "react-dom": "^16.8.2",
     "react-scripts": "2.1.5"
